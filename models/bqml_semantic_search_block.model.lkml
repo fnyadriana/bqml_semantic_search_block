@@ -8,12 +8,12 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 # # and define the joins that connect them together.
 
 datagroup: ecomm_daily {
-  sql_trigger: SELECT MAX(DATE(created_time)) FROM `bigquery-public-data.thelook_ecommerce.order_items` ;;
+  sql_trigger: SELECT MAX(DATE(created_at)) FROM `bigquery-public-data.thelook_ecommerce.order_items` ;;
   max_cache_age: "32 hours"
 }
 
 datagroup: ecomm_monthly {
-  sql_trigger: SELECT MAX(MONTH(created_time)) FROM `bigquery-public-data.thelook_ecommerce.order_items` ;;
+  sql_trigger: SELECT MAX(EXTRACT(MONTH FROM created_at)) FROM `bigquery-public-data.thelook_ecommerce.order_items` ;;
   max_cache_age: "32 hours"
 }
 
